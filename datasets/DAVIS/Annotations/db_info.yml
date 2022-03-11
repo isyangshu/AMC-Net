@@ -1,0 +1,254 @@
+attributes: [AC, BC, CS, DB, DEF, EA, FM, HO, IO, LR, MB, OCC, OV, ROT, SC, SV]
+sets: [training,test]
+sequences:
+- attributes: [DEF]
+  name: bear
+  num_frames: 82
+  set: training
+  eval_t: True
+- attributes: []
+  name: blackswan
+  num_frames: 50
+  set: test
+  eval_t: True
+- attributes: [LR, SV, SC, FM, CS, IO, MB, OCC, HO, EA, OV]
+  name: bmx-bumps
+  num_frames: 90
+  set: training
+  eval_t: False
+- attributes: [LR, SV, SC, FM, CS, IO, MB, DEF, OCC, HO, EA, BC]
+  name: bmx-trees
+  num_frames: 80
+  set: test
+  eval_t: False
+- attributes: [SC, DB, EA, BC]
+  name: boat
+  num_frames: 75
+  set: training
+  eval_t: True
+- attributes: [FM, DB, MB, DEF, HO, ROT, OV, AC]
+  name: breakdance
+  num_frames: 84
+  set: test
+  eval_t: False
+- attributes: [FM, CS, MB, DEF, HO, ROT]
+  name: breakdance-flare
+  num_frames: 71
+  set: training
+  eval_t: False
+- attributes: [SC, OCC, HO, EA]
+  name: bus
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [CS, IO, DEF, ROT]
+  name: camel
+  num_frames: 90
+  set: test
+  eval_t: True
+- attributes: [ROT, BC]
+  name: car-roundabout
+  num_frames: 75
+  set: test
+  eval_t: True
+- attributes: [LR, EA, AC, BC]
+  name: car-shadow
+  num_frames: 40
+  set: test
+  eval_t: True
+- attributes: [SV, ROT, BC]
+  name: car-turn
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [CS, IO, DEF, OCC, HO]
+  name: cows
+  num_frames: 104
+  set: test
+  eval_t: True
+- attributes: [SC, DB, MB, DEF, OCC, HO, ROT, EA]
+  name: dance-jump
+  num_frames: 60
+  set: training
+  eval_t: True
+- attributes: [SC, CS, IO, MB, DEF, HO, ROT, OV]
+  name: dance-twirl
+  num_frames: 90
+  set: test
+  eval_t: False
+- attributes: [FM, CS, MB, DEF, ROT, EA]
+  name: dog
+  num_frames: 60
+  set: test
+  eval_t: False
+- attributes: [FM, MB, DEF, OCC, HO, EA, OV, AC]
+  name: dog-agility
+  num_frames: 25
+  set: training
+  eval_t: False
+- attributes: [LR, SV, FM, DB, HO, ROT, EA, AC]
+  name: drift-chicane
+  num_frames: 52
+  set: test
+  eval_t: False
+- attributes: [LR, SV, FM, CS, MB, HO, ROT, EA, OV, AC]
+  name: drift-straight
+  num_frames: 50
+  set: test
+  eval_t: True
+- attributes: [SV, FM, IO, DB, HO, ROT, OV, AC]
+  name: drift-turn
+  num_frames: 64
+  set: training
+  eval_t: True
+- attributes: [CS, DB, DEF, EA]
+  name: elephant
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [SC, IO, DB, DEF, HO]
+  name: flamingo
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [CS, DEF, EA, BC]
+  name: goat
+  num_frames: 90
+  set: test
+  eval_t: False
+- attributes: [LR, DEF, HO]
+  name: hike
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [SC, IO, DEF, HO, ROT]
+  name: hockey
+  num_frames: 75
+  set: training
+  eval_t: True
+- attributes: [SC, IO, DEF, OCC, HO]
+  name: horsejump-high
+  num_frames: 50
+  set: test
+  eval_t: False
+- attributes: [SC, IO, DEF, OCC, HO, EA]
+  name: horsejump-low
+  num_frames: 60
+  set: training
+  eval_t: False
+- attributes: [SV, SC, IO, DB, MB, OCC, HO, EA]
+  name: kite-surf
+  num_frames: 50
+  set: test
+  eval_t: True
+- attributes: [SC, IO, DB, DEF, OCC, HO]
+  name: kite-walk
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [SC, MB, DEF, OCC, HO, EA]
+  name: libby
+  num_frames: 49
+  set: test
+  eval_t: False
+- attributes: [DEF, OCC, HO]
+  name: lucia
+  num_frames: 70
+  set: training
+  eval_t: False
+- attributes: [LR, SV, FM, DB, MB, DEF, ROT, EA, OV, AC]
+  name: mallard-fly
+  num_frames: 70
+  set: training
+  eval_t: False
+- attributes: [LR, IO, DB, EA]
+  name: mallard-water
+  num_frames: 80
+  set: training
+  eval_t: True
+- attributes: [SV, FM, IO, HO, ROT, OV, AC, BC]
+  name: motocross-bumps
+  num_frames: 60
+  set: training
+  eval_t: True
+- attributes: [SV, SC, FM, IO, MB, DEF, HO, ROT, EA, OV, AC]
+  name: motocross-jump
+  num_frames: 40
+  set: test
+  eval_t: False
+- attributes: [LR, SV, SC, FM, IO, OCC, HO, ROT, EA]
+  name: motorbike
+  num_frames: 43
+  set: training
+  eval_t: False
+- attributes: [LR, SC, IO, HO]
+  name: paragliding
+  num_frames: 70
+  set: training
+  eval_t: False
+- attributes: [SC, IO, DEF, HO, EA]
+  name: paragliding-launch
+  num_frames: 80
+  set: test
+  eval_t: True
+- attributes: [LR, SV, FM, DEF, OCC, HO, ROT, AC]
+  name: parkour
+  num_frames: 100
+  set: test
+  eval_t: False
+- attributes: [DEF, OCC, BC]
+  name: rhino
+  num_frames: 90
+  set: training
+  eval_t: True
+- attributes: [LR, FM, CS, MB, DEF, HO]
+  name: rollerblade
+  num_frames: 35
+  set: training
+  eval_t: False
+- attributes: [SV, IO, HO, EA]
+  name: scooter-black
+  num_frames: 43
+  set: test
+  eval_t: True
+- attributes: [SC, FM, IO, OCC, HO, ROT, EA, BC]
+  name: scooter-gray
+  num_frames: 75
+  set: training
+  eval_t: False
+- attributes: [SV, IO, MB, DEF, HO, ROT, AC]
+  name: soapbox
+  num_frames: 99
+  set: test
+  eval_t: True
+- attributes: [LR, FM, MB, OCC, HO]
+  name: soccerball
+  num_frames: 48
+  set: training
+  eval_t: False
+- attributes: [SC, FM, CS, IO, DEF, HO]
+  name: stroller
+  num_frames: 91
+  set: training
+  eval_t: True
+- attributes: [SV, FM, CS, IO, DB, HO, OV]
+  name: surf
+  num_frames: 55
+  set: training
+  eval_t: True
+- attributes: [SC, FM, IO, DEF, OCC, HO]
+  name: swing
+  num_frames: 60
+  set: training
+  eval_t: False
+- attributes: [SV, FM, IO, MB, DEF, HO]
+  name: tennis
+  num_frames: 70
+  set: training
+  eval_t: False
+- attributes: [SC, HO, EA]
+  name: train
+  num_frames: 80
+  set: training
+  eval_t: True
+
