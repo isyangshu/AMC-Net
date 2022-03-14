@@ -31,6 +31,7 @@ If you have some problems installing `pydensecrf`, you can visit [pydensecrf](ht
 ## Testing
 
 * Test
+
   Please use `test.py` to generate results.
   ```shell
   python test.py
@@ -38,6 +39,7 @@ If you have some problems installing `pydensecrf`, you can visit [pydensecrf](ht
   Then you can get the predicted results in the `output/davis16/AMCNet/results` folder.
 
 * CRF
+
   At the same time, CRF can be further performed on the predicted results, and the relevant code is in `utils/apply_densecrf_davis.py`.
   ```shell
   python utils/apply_densecrf_davis.py
