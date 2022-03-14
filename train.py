@@ -17,17 +17,17 @@ import torch.nn.functional as F
 
 def init_dataloaders(args):
     loaders = {}
-
+    datasets = args.datasets
+    batch_size = args.batch_size
     # init dataloaders for training and validation
     for split in ['train', 'val']:
-        batch_size = args.batch_size
         to_tensor = transforms.ToTensor()
         normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                          std=[0.229, 0.224, 0.225])
         image_transforms = transforms.Compose([to_tensor, normalize])
         target_transforms = transforms.Compose([to_tensor])
 
-        dataset = YTB_DAVIS_Dataset(split=split, datasets=["Davis"], augment=True, transform=image_transforms, target_transform=target_transforms)
+        dataset = YTB_DAVIS_Dataset(split=split, datasets=datasets, augment=True, transform=image_transforms, target_transform=target_transforms)
 
         shuffle = True if split == 'train' else False
         loaders[split] = data.DataLoader(dataset,
@@ -83,15 +83,15 @@ def trainIters(args):
                     output, c4_attention, c3_attention, c2_attention, c1_attention, c0_attention = Model(image, flow)
                     loss_output = criterion(output, mask)
                     loss_c4 = criterion(c4_attention, 
-                                        F.interpolate(mask, size=c4_attention.size()[2:], mode='nearest'))
+                                        F.upsample(mask, size=c4_attention.size()[2:], mode='nearest'))
                     loss_c3 = criterion(c3_attention, 
-                                        F.interpolate(mask, size=c3_attention.size()[2:], mode='nearest'))
+                                        F.upsample(mask, size=c3_attention.size()[2:], mode='nearest'))
                     loss_c2 = criterion(c2_attention,
-                                        F.interpolate(mask, size=c2_attention.size()[2:], mode='nearest'))
+                                        F.upsample(mask, size=c2_attention.size()[2:], mode='nearest'))
                     loss_c1 = criterion(c1_attention,
-                                        F.interpolate(mask, size=c1_attention.size()[2:], mode='nearest'))
+                                        F.upsample(mask, size=c1_attention.size()[2:], mode='nearest'))
                     loss_c0 = criterion(c0_attention,
-                                        F.interpolate(mask, size=c0_attention.size()[2:], mode='nearest'))
+                                        F.upsample(mask, size=c0_attention.size()[2:], mode='nearest'))
                     loss = loss_output + loss_c4 + loss_c3 + loss_c2 + loss_c1 + loss_c0
 
                     iou = db_eval_iou_multi(mask.cpu().detach().numpy(),
@@ -106,15 +106,15 @@ def trainIters(args):
                         output, c4_attention, c3_attention, c2_attention, c1_attention, c0_attention = Model(image, flow)
                         loss_output = criterion(output, mask)
                         loss_c4 = criterion(c4_attention,
-                                            F.interpolate(mask, size=c4_attention.size()[2:], mode='nearest'))
+                         F.upsample(mask, size=c4_attention.size()[2:], mode='nearest'))
                         loss_c3 = criterion(c3_attention,
-                                            F.interpolate(mask, size=c3_attention.size()[2:], mode='nearest'))
+                                            F.upsample(mask, size=c3_attention.size()[2:], mode='nearest'))
                         loss_c2 = criterion(c2_attention,
-                                            F.interpolate(mask, size=c2_attention.size()[2:], mode='nearest'))
+                                            F.upsample(mask, size=c2_attention.size()[2:], mode='nearest'))
                         loss_c1 = criterion(c1_attention,
-                                            F.interpolate(mask, size=c1_attention.size()[2:], mode='nearest'))
+                                            F.upsample(mask, size=c1_attention.size()[2:], mode='nearest'))
                         loss_c0 = criterion(c0_attention,
-                                            F.interpolate(mask, size=c0_attention.size()[2:], mode='nearest'))
+                                            F.upsample(mask, size=c0_attention.size()[2:], mode='nearest'))
                         loss = loss_output + loss_c4 + loss_c3 + loss_c2 + loss_c1 + loss_c0
                     iou = db_eval_iou_multi(mask.cpu().detach().numpy(), output.cpu().detach().numpy())
 
@@ -160,13 +160,13 @@ if __name__ == '__main__':
     torch.manual_seed(args.seed)
     random.seed(args.seed)
 
-    args.model_name = 'xxxxxxxxxx'
+    args.model_name = 'AMCNet'
+    args.datasets = ["Davis"]
     args.batch_size = 4
     args.max_epoch = 100
     args.lr = 1e-3
     args.snapshot = ''
     args.pretrain = False
-
     gpu_id = 0
     print('gpu_id: ', gpu_id)
     print('use_gpu: ', args.use_gpu)
