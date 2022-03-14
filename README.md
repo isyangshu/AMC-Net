@@ -19,6 +19,7 @@
 ```shell
 pip install cython
 pip install pydensecrf
+# pip install git+https://github.com/lucasb-eyer/pydensecrf.git
 ```
 
 If you have some problems installing `pydensecrf`, you can visit [pydensecrf](https://github.com/lucasb-eyer/pydensecrf) for more information.
