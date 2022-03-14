@@ -17,8 +17,11 @@
 
 ### Enviroment
 ```shell
+pip install cython
 pip install pydensecrf
 ```
+
+If you have some problems installing `pydensecrf`, you can visit [pydensecrf](https://github.com/lucasb-eyer/pydensecrf) for more information.
 ### Datasets
 
 ## Training
