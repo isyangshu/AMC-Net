@@ -10,9 +10,8 @@ from prettytable import PrettyTable as ptable
 
 from metrics.vos import f_boundary, jaccard
 
-data_yaml_path = "datasets/DAVIS/Annotations/db_info.yml"
-mask_data_root = "datasets/DAVIS/Annotations/480p_2016"
-
+data_yaml_path = "/workdir/AMCNet/datasets/DAVIS/Annotations/db_info.yml"
+mask_data_root = "/workdir/AMCNet/datasets/DAVIS/Annotations/480p_2016"
 
 def print_all_keys(data_dict, level: int = 0):
     level += 1
