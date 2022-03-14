@@ -36,7 +36,7 @@ In `datasets/dataloader_list`:
 > 
 > `custom_transforms_f.py` and `transform.py` contain some functions for data augmentation.
 ## Training
-* Set the training sets in `utils/args.py` and `train.py` (Line ).
+* Set the training sets in `utils/args.py` and `train.py` (Line 163 - Line 170).
 * Run train.py
   ```shell
   python train.py
