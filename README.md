@@ -30,9 +30,15 @@ Please use the files in the `test` folder to generate results.
 Please use the files in the `EVALVOS` folder to measure metrics.
 
 Taking `test_for_davis.py` as an example:
+
 `Line 13`: Setup `db_info.yml`
+
 `Line 14`: Set the folder of groundtruth
+
 `Line 254`: Set the folder of images
+
 `Line 255 & 256`: Whether to discard the first frame and the last frame
+
 `Line 257`: Save output in `.pkl` format
+
 ## Tools
