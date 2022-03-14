@@ -14,8 +14,18 @@
 
 ## Installation
 
-
 ### Enviroment
+* Python 3.6/3.7
+* Pytorch
+* Torchvision
+* Numpy
+* Pillow
+* Opencv-python (cv2)
+* Scikit-image
+* Tqdm
+* Cython
+* Pydensecrf
+
 ```shell
 pip install cython
 pip install pydensecrf
