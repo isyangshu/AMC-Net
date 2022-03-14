@@ -16,6 +16,9 @@
 
 
 ### Enviroment
+```shell
+pip install pydensecrf
+```
 ### Datasets
 
 ## Training
