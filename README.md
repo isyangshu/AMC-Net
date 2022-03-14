@@ -83,4 +83,10 @@ Taking `test_for_davis.py` as an example:
 > 
 > `Line 257`: Save output in `.pkl` format
 
+```shell
+python test_for_davis.py
+```
+
 ## Tools
+
+I have provided some tools, which can be seen in [README](tools/README.md)
