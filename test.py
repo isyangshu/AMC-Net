@@ -7,23 +7,20 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 from PIL import Image
-from scipy.misc import imresize
 from utils.utils import make_dir
 
 from model.AMCNet import AMCNet
 
 inputRes = (384, 384)
-use_flip = False
-Save_video = False
 to_tensor = transforms.ToTensor()
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                  std=[0.229, 0.224, 0.225])
 image_transforms = transforms.Compose([to_tensor, normalize])
 tensor_transforms = transforms.Compose([to_tensor])
 model_name = 'AMCNet'  # specify the model name
-snapshot = 'checkpoint_path'
+snapshot = '/workdir/AMCNet/ckpt/AMCNet/best.pth'  # Replace with your own absolute path
 
-davis_result_dir = '/AMCNet/output/davis16'
+davis_result_dir = '/workdir/AMCNet/output/davis16'  # Replace with your absolute path
 make_dir(davis_result_dir)
 model = AMCNet()
 model.load_state_dict(torch.load(snapshot))
@@ -32,14 +29,14 @@ model.cuda()
 
 model.train(False)
 
-val_set = '/AMCNet/datasets/DAVIS/ImageSets/2016/val.txt'
+val_set = '/workdir/AMCNet/datasets/DAVIS/ImageSets/2016/val.txt'
 with open(val_set) as f:
     seqs = f.readlines()
     seqs = [seq.strip() for seq in seqs]
 
 for video in tqdm(seqs):
-    davis_root_dir = '/AMCNet/datasets/DAVIS/JPEGImages/480p'
-    davis_flow_dir = '/AMCNet/datasets/DAVIS/flow/480p'
+    davis_root_dir = '/workdir/AMCNet/datasets/DAVIS/JPEGImages/480p'
+    davis_flow_dir = '/workdir/AMCNet/datasets/DAVIS/Flow/480p'
 
     image_dir = os.path.join(davis_root_dir, video)
     flow_dir = os.path.join(davis_flow_dir, video)
