@@ -11,8 +11,8 @@ from PIL import Image
 import glob
 from metrics.vos import f_boundary, jaccard
 
-data_yaml_path = "/datasets/DAVIS/Annotations/db_info.yml"
-mask_data_root = "/datasets/FBMS"
+data_yaml_path = "/workdir/AMCNet/datasets/DAVIS/Annotations/db_info.yml"
+mask_data_root = "/workdiir/AMCNet/datasets/FBMS"
 
 
 def print_all_keys(data_dict, level: int = 0):
