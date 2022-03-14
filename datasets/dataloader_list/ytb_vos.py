@@ -26,7 +26,7 @@ class YoutubeVOSDataset(Dataset):
     """
     data_items = []
 
-    default_hyper_params = dict(dataset_root="/home/yang/Documents/Depth_Model/datasets/youtubevos", subsets=["train"], ratio=1.0, max_diff=50)
+    default_hyper_params = dict(dataset_root="/workdir/AMCNet/datasets/youtubevos", subsets=["train"], ratio=1.0, max_diff=50)
 
     def __init__(self):
         r"""
@@ -48,7 +48,7 @@ class YoutubeVOSDataset(Dataset):
         """
         record = YoutubeVOSDataset.data_items[item]
         anno = [[anno_file, record['obj_id']] for anno_file in record["annos"]]
-        sequence_data = dict(image=record["image_files"], anno=anno, flow=record['flow'], depth=record['depth'])
+        sequence_data = dict(image=record["image_files"], anno=anno, flow=record['flow'])
 
         return sequence_data
 
@@ -60,7 +60,6 @@ class YoutubeVOSDataset(Dataset):
         for subset in self.default_hyper_params["subsets"]:
             image_root = osp.join(dataset_root, subset, "JPEGImages")
             anno_root = osp.join(dataset_root, subset, "Annotations")
-            depth_root = osp.join(dataset_root, subset, "Depth")
             flow_root = osp.join(dataset_root, subset, "flow")
             data_anno_list = []
             cache_file = osp.join(dataset_root, "cache/{}.pkl".format(subset))
@@ -89,9 +88,6 @@ class YoutubeVOSDataset(Dataset):
                             ]
                             record['annos'] = [
                                 osp.join(anno_root, video_id, frame_id + '.png')
-                            ]
-                            record['depth'] = [
-                                osp.join(depth_root, video_id, frame_id + '.png')
                             ]
                             record['flow'] = [
                                 osp.join(flow_root, video_id, frame_id + '.png')
