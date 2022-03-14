@@ -27,7 +27,11 @@ If you have some problems installing `pydensecrf`, you can visit [pydensecrf](ht
 
 ## Training
 
+```shell
+python train.py
+```
 
+> line 30: choose datasets
 ## Testing
 
 * Test
@@ -44,7 +48,12 @@ If you have some problems installing `pydensecrf`, you can visit [pydensecrf](ht
   ```shell
   python utils/apply_densecrf_davis.py
   ```
-  Then you can get the predicted results in the `output/davis16/AMCNet/results_crf` folder.
+  Then you can get the predicted results in the `output/davis16/AMCNet/results_crf` folder. 
+  > Line 18: dataset images folder
+  > 
+  > Line 19: prediction mask folder
+  > 
+  > Line 20: crf prediction folder
 ## Metric
 
 Please use the files in the `EVALVOS` folder to measure metrics.
