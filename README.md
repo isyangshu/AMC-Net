@@ -24,6 +24,7 @@
 * Pillow
 * Opencv-python (cv2)
 * Scikit-image
+* Joblib
 * Tqdm
 * Cython
 * Pydensecrf
