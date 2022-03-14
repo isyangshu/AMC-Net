@@ -33,7 +33,7 @@ At the same time, CRF can be further performed on the predicted results, and the
 ```shell
 python utils/apply_densecrf_davis.py
 ```
-Then you can get the predicted results in the `output/davis16/AMCNet/results` folder.
+Then you can get the predicted results in the `output/davis16/AMCNet/results_crf` folder.
 ## Metric
 
 Please use the files in the `EVALVOS` folder to measure metrics.
