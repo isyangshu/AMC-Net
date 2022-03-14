@@ -15,9 +15,9 @@ from os.path import isfile, join
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-image_dir = '/AMCNet/datasets/DAVIS/JPEGImages/480p'
-mask_dir = 'AMCNet/output/davis16/result'
-save_dir = '/AMCNet/output/davis16/result_crf'
+image_dir = '/workdir/AMCNet/datasets/DAVIS/JPEGImages/480p'
+mask_dir = '/workdir/AMCNet/output/davis16/result'
+save_dir = '/workdir/AMCNet/output/davis16/result_crf'
 
 for seq in tqdm(listdir(mask_dir)):
     seq_dir = join(image_dir, seq)
