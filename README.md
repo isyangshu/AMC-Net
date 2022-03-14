@@ -27,7 +27,13 @@ Please use `test.py` to generate results.
 ```shell
 python test.py
 ```
+Then you can get the predicted results in the `output/davis16/AMCNet/results` folder.
 
+At the same time, CRF can be further performed on the predicted results, and the relevant code is in `utils/apply_densecrf_davis.py`.
+、、、shell
+python utils/apply_densecrf_davis.py
+、、、
+Then you can get the predicted results in the `output/davis16/AMCNet/results` folder.
 ## Metric
 
 Please use the files in the `EVALVOS` folder to measure metrics.
