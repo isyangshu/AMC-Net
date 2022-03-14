@@ -24,7 +24,11 @@ pip install pydensecrf
 
 If you have some problems installing `pydensecrf`, you can visit [pydensecrf](https://github.com/lucasb-eyer/pydensecrf) for more information.
 ### Datasets
+In `datasets/dataloader_list`:
 
+`adaptor_dataset.py` and `adaptor_dataset_.py` are used to assemble the DAVIS and Youtube-VOS datasets to build the model dataset, in practice we only use DAVIS for training.
+
+`davis.py` and `tyb_vos.py` represent the data set construction rules, which can be modified to get the desired data list and stored in the cache (e.g. `datasets/DAVIS/cache/tran2016.pkl` and `datasets/DAVIS/cache/val2016.pkl`).
 ## Training
 
 ```shell
