@@ -26,12 +26,6 @@
 * Cython
 * Pydensecrf
 
-```shell
-pip install cython
-pip install pydensecrf
-# pip install git+https://github.com/lucasb-eyer/pydensecrf.git
-```
-
 If you have some problems installing `pydensecrf`, you can visit [pydensecrf](https://github.com/lucasb-eyer/pydensecrf) for more information.
 ### Datasets
 In `datasets/dataloader_list`:
@@ -42,12 +36,12 @@ In `datasets/dataloader_list`:
 > 
 > `custom_transforms_f.py` and `transform.py` contain some functions for data augmentation.
 ## Training
+* Set the training sets in `utils/args.py` and `train.py` (Line ).
+* Run train.py
+  ```shell
+  python train.py
+  ```
 
-```shell
-python train.py
-```
-
-> line 30: choose datasets
 ## Testing
 
 * Test
