@@ -135,6 +135,21 @@ class FeedForward2D(nn.Module):
         return x
 
 
+class FeedForward1D(nn.Module):
+    def __init__(self, dim, hidden_dim, dropout=0.0):
+        super(FeedForward1D, self).__init__()
+        self.net = nn.Sequential(
+            nn.Linear(dim, hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, dim),
+            nn.Dropout(dropout),
+        )
+
+    def forward(self, x):
+        return self.net(x)
+
+
 class TransformerBlock(nn.Module):
     """
     Transformer = MultiHead_Attention + Feed_Forward with sublayer connection
@@ -184,6 +199,45 @@ class AMCNet(nn.Module):
         self.atten_flow_spatial_2 = SpatialAttention()
         self.atten_flow_spatial_3 = SpatialAttention()
         self.atten_flow_spatial_4 = SpatialAttention()
+
+        self.rgb_dem0 = nn.Sequential(nn.Conv2d(64, 32, kernel_size=3, padding=1), nn.BatchNorm2d(32),
+                                      nn.PReLU())
+        self.flow_dem0 = nn.Sequential(nn.Conv2d(64, 32, kernel_size=3, padding=1), nn.BatchNorm2d(32),
+                                       nn.PReLU())
+        self.rgb_sa0 = TransformerBlock(8, 64)
+        # self.rgb_dem1 = nn.Sequential(nn.Conv2d(256, 64, kernel_size=3, padding=1), nn.BatchNorm2d(64),
+        #                               nn.PReLU())
+        # self.flow_dem1 = nn.Sequential(nn.Conv2d(256, 64, kernel_size=3, padding=1), nn.BatchNorm2d(64),
+        #                                nn.PReLU())
+        # self.rgb_dem2 = nn.Sequential(nn.Conv2d(512, 128, kernel_size=3, padding=1), nn.BatchNorm2d(128),
+        #                               nn.PReLU())
+        # self.flow_dem2 = nn.Sequential(nn.Conv2d(512, 128, kernel_size=3, padding=1), nn.BatchNorm2d(128),
+        #                                nn.PReLU())
+        # self.rgb_dem3 = nn.Sequential(nn.Conv2d(1024, 256, kernel_size=3, padding=1), nn.BatchNorm2d(256),
+        #                               nn.PReLU())
+        # self.flow_dem3 = nn.Sequential(nn.Conv2d(1024, 256, kernel_size=3, padding=1), nn.BatchNorm2d(256),
+        #                                nn.PReLU())
+        # self.rgb_dem4 = nn.Sequential(nn.Conv2d(2048, 256, kernel_size=3, padding=1), nn.BatchNorm2d(256),
+        #                               nn.PReLU())
+        # self.flow_dem4 = nn.Sequential(nn.Conv2d(2048, 256, kernel_size=3, padding=1), nn.BatchNorm2d(256),
+        #                                nn.PReLU())
+
+        self.attention_feature1 = nn.Sequential(nn.Conv2d(256 * 2, 64, kernel_size=3, padding=1), nn.BatchNorm2d(64),
+                                                nn.PReLU(),
+                                                nn.Conv2d(64, 2, kernel_size=3, padding=1))
+        self.attention_feature2 = nn.Sequential(nn.Conv2d(512 * 2, 128, kernel_size=3, padding=1),
+                                                nn.BatchNorm2d(128), nn.PReLU(),
+                                                nn.Conv2d(128, 2, kernel_size=3, padding=1))
+        self.attention_feature3 = nn.Sequential(nn.Conv2d(1024 * 2, 256, kernel_size=3, padding=1),
+                                                nn.BatchNorm2d(256), nn.PReLU(),
+                                                nn.Conv2d(256, 64, kernel_size=3, padding=1), nn.BatchNorm2d(64),
+                                                nn.PReLU(),
+                                                nn.Conv2d(64, 2, kernel_size=3, padding=1))
+        self.attention_feature4 = nn.Sequential(nn.Conv2d(2048 * 2, 512, kernel_size=3, padding=1),
+                                                nn.BatchNorm2d(512), nn.PReLU(),
+                                                nn.Conv2d(512, 128, kernel_size=3, padding=1), nn.BatchNorm2d(128),
+                                                nn.PReLU(),
+                                                nn.Conv2d(128, 2, kernel_size=3, padding=1))
 
         self.attention_feature0 = nn.Sequential(nn.Conv2d(64 * 2, 32, kernel_size=3, padding=1), nn.BatchNorm2d(32),
                                                 nn.PReLU(),
@@ -277,6 +331,9 @@ class AMCNet(nn.Module):
         c4_Flow = self.conv4_Flow(c3_Flow)  # N,2048,12,12
 
         c0_RGB = self.conv0_RGB(input)  # N,64,192,192
+        c0_rgb_dem = self.rgb_dem0(c0_RGB)
+        c0_flow_dem = self.flow_dem0(c0_Flow)
+
         G0 = self.attention_feature0(torch.cat((c0_RGB, c0_Flow), dim=1))
         G0 = F.adaptive_avg_pool2d(torch.sigmoid(G0), 1)
         c0_RGB = G0[:, 0, :, :].unsqueeze(1).repeat(1, 64, 1, 1) * c0_RGB
